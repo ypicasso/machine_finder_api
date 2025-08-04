@@ -1,0 +1,6 @@
+@MachineFinder.Api_HostAddress = http://localhost:5026
+
+GET {{MachineFinder.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
