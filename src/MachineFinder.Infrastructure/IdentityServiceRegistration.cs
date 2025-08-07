@@ -49,6 +49,7 @@ namespace MachineFinder.Infrastructure
             services.AddSingleton<EncryptionService>();
             services.AddSingleton<FileProcessor>();
             services.AddSingleton<BaseEmailer>();
+            services.AddSingleton<LicenciaService>();
 
             return services;
         }

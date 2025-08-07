@@ -17,4 +17,13 @@
 	  <ProjectReference Include="..\MachineFinder.Domain\MachineFinder.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\Admin\Commands\" />
+	  <Folder Include="Features\Admin\Queries\" />
+	  <Folder Include="Features\Worker\Commands\" />
+	  <Folder Include="Features\Worker\Queries\" />
+	  <Folder Include="Features\Owner\Commands\" />
+	  <Folder Include="Features\Owner\Queries\" />
+	</ItemGroup>
+
 </Project>

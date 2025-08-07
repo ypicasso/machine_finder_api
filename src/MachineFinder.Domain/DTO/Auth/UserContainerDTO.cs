@@ -8,6 +8,7 @@
         public string EmaUsuario { get; set; } = string.Empty;
 
         public string CodPerfil { get; set; } = string.Empty;
+        public string CodEntorno { get; set; } = string.Empty;
         public bool EsMobile { get; set; }
     }
 }

@@ -109,5 +109,22 @@ namespace MachineFinder.Utilities
 
             return null;
         }
+
+        public static string? ToHidden(this object? value)
+        {
+            if (value == null)
+                return "*****";
+
+            if (value is DateTime fecha)
+            {
+                var dia = fecha.ToString("dd").Substring(0, 1) + "*";
+                var mes = fecha.ToString("MM").Substring(0, 1) + "*";
+                var ano = fecha.ToString("yyyy").Substring(0, 2) + "**";
+
+                return $"{dia}/{mes}/{ano}";
+            }
+
+            return value == null ? "*****" : value.ToString();
+        }
     }
 }

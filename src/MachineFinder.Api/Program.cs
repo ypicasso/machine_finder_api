@@ -52,6 +52,8 @@ builder.Services.AddSwaggerGen(c =>
             new List<string>()
         }
     });
+
+    c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1" });
 });
 
 
@@ -71,13 +73,16 @@ app.UseStaticFiles();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
     //app.UseSwaggerUI();
 
+    app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Sample");
+        // c.RoutePrefix = string.Empty; // UI en /
     });
+
+    //builder.Services.AddEndpointsApiExplorer();
 }
 
 app.UseDeveloperExceptionPage();

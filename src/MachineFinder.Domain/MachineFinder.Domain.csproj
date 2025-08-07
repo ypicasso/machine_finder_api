@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTO\Builder\" />
+    <Folder Include="DTO\Worker\" />
+    <Folder Include="DTO\Owner\" />
     <Folder Include="Enums\" />
   </ItemGroup>
 

@@ -21,6 +21,6 @@ namespace MachineFinder.Domain.Entities
         public bool ind_repassword { get; set; }
         public DateTime? fec_repassword { get; set; }
         public List<ContraseniaEntity>? contrasenias { get; set; }
-        public List<UsuarioPerfilEntity>? usuario_perfiles { get; set; }
+        public List<CuentaEntity>? cuentas { get; set; }
     }
 }

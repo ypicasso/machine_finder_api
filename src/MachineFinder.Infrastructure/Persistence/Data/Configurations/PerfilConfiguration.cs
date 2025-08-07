@@ -18,7 +18,9 @@ namespace MachineFinder.Infrastructure.Persistence.Data.Configurations
             
             builder.SetAudithory();
 
-            builder.HasMany(m => m.usuario_perfiles).WithOne(o => o.perfil).HasForeignKey(f => f.id_perfil);
+            builder.HasMany(m => m.cuentas).WithOne(o => o.perfil).HasForeignKey(f => f.id_perfil);
+            builder.HasMany(m => m.documentos).WithOne(o => o.perfil).HasForeignKey(f => f.id_perfil);
+            builder.HasMany(m => m.licencias).WithOne(o => o.perfil).HasForeignKey(f => f.id_perfil);
         }
     }
 }

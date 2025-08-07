@@ -19,7 +19,7 @@ using System.Text;
 
 namespace MachineFinder.Infrastructure.Repositories
 {
-    public class AuthRepository : RepositoryBase<UsuarioEntity>, IAuthRepository
+    public class AuthRepository : RepositoryBase, IAuthRepository
     {
         private readonly JwtSettings _jwtSettings;
         private readonly BaseEmailer _emailer;
@@ -90,7 +90,7 @@ namespace MachineFinder.Infrastructure.Repositories
         {
             var response = new AuthDTO();
             var usuario = await _context.Usuario.Where(w => w.usu_email == request.username)
-                .Include(i => i.usuario_perfiles!).ThenInclude(t => t.perfil)
+                .Include(i => i.cuentas!).ThenInclude(t => t.perfil)
                 .FirstOrDefaultAsync();
 
             ThrowTrue(usuario, "Las credenciales son incorrectas");
@@ -116,7 +116,7 @@ namespace MachineFinder.Infrastructure.Repositories
             response.email = usuario!.usu_email;
             response.ind_confirmacion = usuario.ind_confirmacion;
             response.ind_repassword = usuario.ind_repassword;
-            response.perfiles = usuario.usuario_perfiles?
+            response.perfiles = usuario.cuentas?
                 .Where(w => w.cod_estado == true)
                 .Select(s => new AuthPerfilDTO(s.id_perfil, s.perfil?.cod_perfil!, baseUrl + s.perfil?.nom_perfil!)).ToList() ?? new List<AuthPerfilDTO>();
 

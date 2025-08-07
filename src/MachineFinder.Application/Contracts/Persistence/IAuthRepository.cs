@@ -6,7 +6,7 @@ using MachineFinder.Domain.Entities;
 
 namespace MachineFinder.Application.Contracts.Persistence
 {
-    public interface IAuthRepository : IAsyncRepository<UsuarioEntity>
+    public interface IAuthRepository
     {
         Task<AuthDTO> Signin(SigninCommand request);
         Task<bool> Signout(SignoutCommand request);

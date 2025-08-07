@@ -33,7 +33,7 @@ namespace MachineFinder.Infrastructure.Persistence.Data.Configurations
             builder.SetAudithory();
 
             builder.HasMany(m => m.contrasenias).WithOne(o => o.usuario).HasForeignKey(f => f.id_usuario);
-            builder.HasMany(m => m.usuario_perfiles).WithOne(o => o.usuario).HasForeignKey(f => f.id_usuario);
+            builder.HasMany(m => m.cuentas).WithOne(o => o.usuario).HasForeignKey(f => f.id_usuario);
         }
     }
 }

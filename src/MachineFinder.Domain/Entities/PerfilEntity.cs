@@ -6,6 +6,8 @@ namespace MachineFinder.Domain.Entities
         public string cod_perfil { get; set; } = string.Empty;
         public string nom_perfil { get; set; } = string.Empty;
         public string url_perfil { get; set; } = string.Empty;
-        public List<UsuarioPerfilEntity>? usuario_perfiles { get; set; }
+        public List<CuentaEntity>? cuentas { get; set; }
+        public List<DocumentoEntity>? documentos { get; set; }
+        public List<LicenciaEntity>? licencias { get; set; }
     }
 }

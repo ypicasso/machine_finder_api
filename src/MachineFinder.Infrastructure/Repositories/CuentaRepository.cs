@@ -9,7 +9,7 @@ using System.Transactions;
 
 namespace MachineFinder.Infrastructure.Repositories
 {
-    public class CuentaRepository : RepositoryBase<UsuarioEntity>, ICuentaRepository
+    public class CuentaRepository : RepositoryBase, ICuentaRepository
     {
         private readonly EncryptionService _encryption;
         private readonly BaseEmailer _emailer;
@@ -45,7 +45,7 @@ namespace MachineFinder.Infrastructure.Repositories
                 usuario.pwd_usuario = _encryption.Encrypt(request.new_password!);
                 usuario.ind_repassword = false;
 
-                await UpdateAsync(usuario);
+                await UpdateEntityAsync(usuario);
 
                 var contrasenia = new ContraseniaEntity { id_usuario = usuario!.id_usuario, pwd_usuario = usuario!.pwd_usuario };
 

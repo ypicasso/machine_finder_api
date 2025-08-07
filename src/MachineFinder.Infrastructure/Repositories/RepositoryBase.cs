@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MachineFinder.Infrastructure.Repositories
 {
-    public class RepositoryBase<T> : IAsyncRepository<T> where T : BaseDomainModel
+    public class RepositoryBase : IAsyncRepository
     {
         protected const string BOX_STYLE = "box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;background-color: #EDEEF0;margin: 50px;padding: 30px;border-radius: 15px;";
 
@@ -19,6 +19,7 @@ namespace MachineFinder.Infrastructure.Repositories
         protected readonly string? USU_EMAIL;
 
         protected readonly string? COD_PERFIL;
+        protected readonly string? COD_ENTORNO;
         protected readonly bool ES_MOBILE;
 
         public RepositoryBase(AppDBContext context, SessionStorage? sessionStorage)
@@ -40,6 +41,7 @@ namespace MachineFinder.Infrastructure.Repositories
                     USU_EMAIL = userInfo?.usu_email;
 
                     COD_PERFIL = _sessionStorage?.GetUser()?.CodPerfil ?? "";
+                    COD_ENTORNO = _sessionStorage?.GetUser()?.CodEntorno ?? "";
                     ES_MOBILE = _sessionStorage?.GetUser()?.EsMobile ?? false;
                 }
             }
@@ -51,50 +53,6 @@ namespace MachineFinder.Infrastructure.Repositories
             {
                 return BaseDomainModel.GetNow();
             }
-        }
-
-        public async Task<T> AddAsync(T entity)
-        {
-            _context.Entry(entity).State = EntityState.Added;
-            _context.Set<T>().Add(entity);
-
-            await _context.SaveChangesAsync();
-
-            return entity;
-        }
-
-        public async Task DeleteAsync(T entity)
-        {
-            _context.Entry(entity).State = EntityState.Deleted;
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DisableAsync(T entity)
-        {
-            _context.Entry(entity).State = EntityState.Deleted;
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAllAsync()
-        {
-            return await _context.Set<T>().ToListAsync();
-        }
-
-        public async Task<T?> GetByIdAsync(int id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
-
-        public async Task<T> UpdateAsync(T entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.Set<T>().Update(entity);
-
-            await _context.SaveChangesAsync();
-
-            return entity;
         }
 
         public void ThrowTrue(bool condition, string message)
@@ -134,7 +92,6 @@ namespace MachineFinder.Infrastructure.Repositories
         public async Task DeleteEntityAsync<D>(D entity) where D : BaseDomainModel
         {
             _context.Entry(entity).State = EntityState.Deleted;
-            // _context.Set<D>().Update(entity);
 
             await _context.SaveChangesAsync();
         }

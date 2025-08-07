@@ -48,7 +48,7 @@ namespace MachineFinder.Api.Middleware
         {
             try
             {
-                var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+                var authHeader = context.Request.Headers[Constants.HEADER_AUTHORIZATION].FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(authHeader))
                 {
@@ -161,8 +161,9 @@ namespace MachineFinder.Api.Middleware
                     NomUsuario = userName,
                     EmaUsuario = userEmail,
 
-                    CodPerfil = GetPerfilIndicator(context),
-                    EsMobile = GetMobileIndicator(context)
+                    CodEntorno = GetHeaderValue(context, Constants.HEADER_COD_ENTORNO).value ?? "",
+                    CodPerfil = GetHeaderValue(context, Constants.HEADER_COD_PERFIL).value ?? "",
+                    EsMobile = GetHeaderValue(context, Constants.HEADER_IS_MOBILE).found,
                 };
 
                 _sessionStorage.SetUser(sessionData);
@@ -174,42 +175,18 @@ namespace MachineFinder.Api.Middleware
             context.Items[Constants.EMA_USUARIO] = userEmail;
         }
 
-        private string GetPerfilIndicator(HttpContext context)
+        private (bool found, string? value) GetHeaderValue(HttpContext context, string key)
         {
-            try
-            {
-                StringValues value = new StringValues();
+            string? mValue = null;
+            bool mFound = false;
 
-                if (context.Request.Headers.TryGetValue("X-MACH-FINDER-PROFILE", out value))
-                {
-                    return value.ToString();
-                }
-            }
-            catch (Exception ex)
+            if (context.Request.Headers.TryGetValue(key, out StringValues value))
             {
+                mFound = true;
+                mValue = value.ToString();
             }
 
-            return string.Empty;
-        }
-
-        private bool GetMobileIndicator(HttpContext context)
-        {
-            bool indicator = false;
-
-            try
-            {
-                StringValues value = new StringValues();
-
-                if (context.Request.Headers.TryGetValue("X-MACH-FINDER-MOBILE", out value))
-                {
-                    indicator = true;
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return indicator;
+            return (mFound, mValue);
         }
     }
 }

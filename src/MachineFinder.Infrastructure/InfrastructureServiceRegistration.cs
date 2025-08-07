@@ -18,8 +18,14 @@ namespace MachineFinder.Infrastructure
             // services.AddScoped<IUnitOfWork, UnitOfWork>();
             // services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
 
+            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IBuilderRepository, BuilderRepository>();
             services.AddScoped<ICuentaRepository, CuentaRepository>();
+            services.AddScoped<IDocumentoRepository, DocumentoRepository>();
+            services.AddScoped<ILicenciaRepository, LicenciaRepository>();
+            services.AddScoped<IRegisterRepository, RegisterRepository>();
+            services.AddScoped<ITipoMaquinariaRepository, TipoMaquinariaRepository>();
 
             return services;
         }

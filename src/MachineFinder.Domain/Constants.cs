@@ -11,5 +11,26 @@
 
         public const string ACTIVO = "Activo";
         public const string INACTIVO = "Inactivo";
+
+        public const string HEADER_AUTHORIZATION = "Authorization";
+        public const string HEADER_IS_MOBILE = "X-MACH-FINDER-MOBILE";
+        public const string HEADER_COD_PERFIL = "X-MACH-FINDER-PROFILE";
+        public const string HEADER_COD_ENTORNO = "X-MACH-FINDER-ENTORNO";
+
+
+        public static class TipoUsuario
+        {
+            public const string BUILDER = "BUILDER";
+            public const string OWNER = "OWNER";
+            public const string WORKER = "WORKER";
+        }
+
+        public static class Tablas
+        {
+            public const string DOCS = "DOCS";
+            public const string ESTMAQ = "ESTMAQ";
+            public const string TIPDOC = "TIPDOC";
+            public const string TIPUSU = "TIPUSU";
+        }
     }
 }

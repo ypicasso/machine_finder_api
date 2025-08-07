@@ -1,9 +1,8 @@
 ﻿using MachineFinder.Application.Features.Cuenta.Commands.ChangePassword;
-using MachineFinder.Domain.Entities;
 
 namespace MachineFinder.Application.Contracts.Persistence
 {
-    public interface ICuentaRepository : IAsyncRepository<UsuarioEntity>
+    public interface ICuentaRepository
     {
         Task<string> ChangePassword(ChangePasswordCommand request);
     }

@@ -53,9 +53,17 @@ namespace MachineFinder.Infrastructure.Persistence.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDBContext).Assembly);
         }
 
+        public virtual DbSet<CatalogoEntity> Catalogo { get; set; }
         public virtual DbSet<ContraseniaEntity> Contrasenia { get; set; }
+        public virtual DbSet<CuentaEntity> Cuenta { get; set; }
+        public virtual DbSet<CuentaDocumentoEntity> CuentaDocumento { get; set; }
+        public virtual DbSet<CuentaDocumentoHistorialEntity> CuentaDocumentoHistorial { get; set; }
+        public virtual DbSet<CuentaLicenciaEntity> CuentaLicencia { get; set; }
+        public virtual DbSet<CuentaMaquinariaEntity> CuentaMaquinaria { get; set; }
+        public virtual DbSet<DocumentoEntity> Documento { get; set; }
+        public virtual DbSet<LicenciaEntity> Licencia { get; set; }
         public virtual DbSet<PerfilEntity> Perfil { get; set; }
+        public virtual DbSet<TipoMaquinariaEntity> TipoMaquinaria { get; set; }
         public virtual DbSet<UsuarioEntity> Usuario { get; set; }
-        public virtual DbSet<UsuarioPerfilEntity> UsuarioPerfil { get; set; }
     }
 }
